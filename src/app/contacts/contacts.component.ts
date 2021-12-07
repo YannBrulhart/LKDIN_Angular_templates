@@ -19,6 +19,7 @@ import {trigger, state, style, transition, animate} from '@angular/animations';
 })
 
 export class ContactsComponent {
+  state = 'inactive';
   input = {
     'width': '360px',
     'background': '#fff',
