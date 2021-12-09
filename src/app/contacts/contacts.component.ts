@@ -11,7 +11,7 @@ import {trigger, state, style, transition, animate} from '@angular/animations';
           opacity: '1'
         })),
         transition('void => *',[
-          style({transform: 'translateY(-100px)', opacity:'0'}),
+          style({transform: 'translateY(-500px)', opacity:'0'}),
           animate('1000ms ease-in-out')
         ])
       ])
@@ -19,6 +19,12 @@ import {trigger, state, style, transition, animate} from '@angular/animations';
 })
 
 export class ContactsComponent {
+  values = '';
+
+  onKey(event:any){
+    this.values = event.target.value
+  }
+
   state = 'inactive';
   input = {
     'width': '360px',

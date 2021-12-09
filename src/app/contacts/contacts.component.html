@@ -3,6 +3,11 @@
 <!-- <h3 [ngClass]="letters.value.length > 15 ? 'trop' : 'parfait'">{{letters.value.length}}</h3> --> 
 
 <div class="row">
+    <input (keyup)="onKey($event)">
+    <p>{{values}}</p>
+</div>
+
+<div class="row">
     <form class="col s12" #form="ngForm" (ngSubmit)="addContact(form.value)">
         <div class="row">
             <div class="input-field col s4">
