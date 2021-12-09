@@ -1,33 +1,44 @@
 <div class="row">
     <form class="col s12">
         <div class="row">
-            <div class="input-field col s4">
-                <input id="first_name" type="text" required class="validate">
-                <!-- <input id="first_name" type="text" [(ngModel)]="first_name" class="validate"> -->
+            <div class="input-field col s4 form-group">
+                <input type="text"
+                       class="form-control validate" 
+                       id="first_name"
+                       name="first_name"
+                       required
+                       [(ngModel)]="model1.first_name"
+                       #firstname="ngModel">                
                 <label for="first_name">Prénom</label>
+                <div [hidden]="firstname.valid || firstname.pristine"
+                     class="alert alert-danger">
+                    Le prénom est requis
+                </div>
             </div>
             <div class="input-field col s4">
                 <input id="last_name" type="text" required class="validate">
-                <!-- <input id="last_name" type="text" [(ngModel)]="last_name" required class="validate"> -->
                 <label for="last_name">Nom</label>
             </div>
             <div class="input-field col s4">
                 <input id="gender" type="text" required class="validate">
-                <!-- <input id="gender" type="text" [(ngModel)]="gender" required class="validate"> -->
                 <label for="gender">Genre</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s4">
                 <input id="email" type="text" required class="validate">
-                <!-- <input id="email" type="text" [(ngModel)]="email" required class="validate"> -->
                 <label for="email">EMail</label>
             </div>          
             <div class="input-field col s4 form-group">
-                <select class="form-control" id="company" materialize="material_select">
-                    <option value="" disabled selected>Choisir une compagnie</option>
-                    <option *ngFor="let company of companies" [value]="company">{{company}}</option>
+                <select class="form-control" 
+                        id="company"
+                        name="company"
+                        required
+                        materialize="material_select">
+                    <option *ngFor="let company of companies" 
+                            [value]="company">{{company}}</option>
                 </select>
+
                 <label for="company">Compagnie</label>
             </div>
             <button class="waves-effect waves-light btn" id="btn" type="submit">Ajouter contact</button>

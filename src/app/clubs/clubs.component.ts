@@ -31,8 +31,9 @@ export class ClubsComponent implements OnInit {
     'padding': '22px 18px'
   };
 
-  companies = ['LinkedIn', 'Microsoft', 'Meggitt', 'Other'];
+  companies = ['', 'LinkedIn', 'Microsoft', 'Meggitt', 'Other'];
 
+  model1 = new Contact('', '', '', '', '');
   model = [new Contact('Yann', 'Brulhart', 'yann@bubusissi.ch', 'male', this.companies[2])];
 
   constructor() { }
