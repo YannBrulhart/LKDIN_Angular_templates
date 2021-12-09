@@ -1,15 +1,16 @@
 <div class="row">
     <form class="col s12"
-          (ngSubmit)="submit()">
+          #contactForm="ngForm"
+          (ngSubmit)="submit(contactForm.form.value)">
         <div class="row">
             <div class="input-field col s4 form-group">
-                <input type="text"
-                       class="form-control validate" 
-                       id="first_name"
+                <input id="first_name"
                        name="first_name"
+                       type="text"
+                       class="form-control validate" 
                        required
                        [(ngModel)]="model1.first_name"
-                       #firstname="ngModel">                
+                       #firstname="ngModel">
                 <label for="first_name">Prénom</label>
                 <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)" 
                      class="alert alert-danger">
@@ -18,39 +19,60 @@
                     </div>
                 </div>
             </div>
-            <div class="input-field col s4">
-                <input id="last_name" type="text" required class="validate">
-                <label for="last_name">Nom</label>
+            <div class="input-field col s4 form-group">
+                <input id="last_name" 
+                       name="last_name" 
+                       type="text"                        
+                       class="form-control validate"
+                       required
+                       [(ngModel)]="model1.last_name">
+                <label for="last_name">Nom</label>                
             </div>
-            <div class="input-field col s4">
-                <input id="gender" type="text" required class="validate">
+            <div class="input-field col s4 form-group">
+                <input id="gender"
+                       name="gender"
+                       type="text"
+                       class="form-control validate"
+                       required
+                       [(ngModel)]="model1.gender">
                 <label for="gender">Genre</label>
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s4">
-                <input id="email" type="text" required class="validate">
+            <div class="input-field col s4 form-group">
+                <input id="email"
+                       name="email"
+                       type="email" 
+                       required
+                       class="form-control validate"
+                       [(ngModel)]="model1.email">
                 <label for="email">EMail</label>
             </div>          
-            <div class="input-field col s4 form-group">
-                <select class="form-control" 
+            <div class="col s4 form-group">
+                <label for="company" class="active">Compagnie</label>
+                <select class="browser-default form-control validate"                 
                         id="company"
                         name="company"
+                        type="text"                        
                         required
-                        materialize="material_select">
+                        [(ngModel)]="model1.company">
+                    <option value="" disabled selected>Choisir une compagnie</option>
                     <option *ngFor="let company of companies" 
                             [value]="company">{{company}}</option>
-                </select>
-
-                <label for="company">Compagnie</label>
+                </select>                
             </div>
-            <button class="waves-effect waves-light btn" id="btn" type="submit">Ajouter contact</button>
+            <button class="waves-effect waves-light btn" 
+                    id="btn" 
+                    type="submit"
+                    [disabled]="!contactForm.form.valid">
+                Ajouter contact
+            </button>
         </div>
     </form>
 </div>
 
 <div class="row">
-    <div class="col s12 m4" *ngFor="let contact of model" [@contactsAnimation]="state">
+    <div class="col s12 m4" *ngFor="let contact of models" [@contactsAnimation]="state">
         <div class="card blue-grey darken-1">
             <div class="card-image">
                 <img src="http://images.pexels.com/photos/91227/pexels-photo-91227.jpeg">

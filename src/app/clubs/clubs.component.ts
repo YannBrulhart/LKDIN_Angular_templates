@@ -34,14 +34,21 @@ export class ClubsComponent implements OnInit {
   companies = ['', 'LinkedIn', 'Microsoft', 'Meggitt', 'Other'];
 
   model1 = new Contact('', '', '', '', '');
-  model = [new Contact('Yann', 'Brulhart', 'yann@bubusissi.ch', 'male', this.companies[2])];
+  models = [new Contact('Yann', 'Brulhart', 'yann@bubusissi.ch', 'male', this.companies[2])];
 
   constructor() { }
 
   ngOnInit(): void {  
   }
 
-  submit(): void {
-
+  submit(value : any): void {
+    this.models.unshift(
+      new Contact(
+        value.first_name,
+        value.last_name,
+        value.gender,
+        value.email,
+        value.company,
+      ));
   }
 }
