@@ -21,7 +21,7 @@ import { Contact } from '../contact';
 export class ClubsComponent implements OnInit {
 
   state='inactive';
-
+  
   input = {
     'width': '360px',
     'background': '#fff',
@@ -39,5 +39,9 @@ export class ClubsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {  
+  }
+
+  submit(): void {
+
   }
 }

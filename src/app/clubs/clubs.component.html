@@ -1,5 +1,6 @@
 <div class="row">
-    <form class="col s12">
+    <form class="col s12"
+          (ngSubmit)="submit()">
         <div class="row">
             <div class="input-field col s4 form-group">
                 <input type="text"
@@ -10,9 +11,11 @@
                        [(ngModel)]="model1.first_name"
                        #firstname="ngModel">                
                 <label for="first_name">Prénom</label>
-                <div [hidden]="firstname.valid || firstname.pristine"
+                <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)" 
                      class="alert alert-danger">
-                    Le prénom est requis
+                    <div *ngIf="firstname.errors && firstname.errors['required']">
+                        Le prénom est requis
+                    </div>
                 </div>
             </div>
             <div class="input-field col s4">
