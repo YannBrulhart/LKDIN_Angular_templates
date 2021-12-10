@@ -1,0 +1,90 @@
+<div class="row">
+    <form class="col s12" 
+          [formGroup]="reactForm"
+          (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="input-field col s4 form-group">
+                <input type="text"
+                       class="form-control validate" 
+                       formControlName="first_name"
+                       required>
+                <label for="first_name">Prénom</label>
+                <div *ngIf="!reactForm.controls['first_name'].valid"
+                        class="alert alert-danger">
+                    Le prénom est requis
+                </div>                
+            </div>
+            <div class="input-field col s4 form-group">
+                <input type="text"                        
+                       class="form-control validate"
+                       formControlName="last_name"
+                       required>
+                <label for="last_name">Nom</label>
+                <div *ngIf="!reactForm.controls['last_name'].valid"
+                        class="alert alert-danger">
+                    Le nom est requis
+                </div>                
+            </div>
+            <div class="input-field col s4 form-group">
+                <input type="text"
+                       class="form-control validate"
+                       formControlName="gender"
+                       required>
+                <label for="gender">Genre</label>
+                <div *ngIf="!reactForm.controls['gender'].valid"
+                        class="alert alert-danger">
+                    Le genre est requis
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s4 form-group">
+                <input type="email" 
+                       class="form-control validate"
+                       formControlName="email"
+                       required>
+                <label for="email">EMail</label>
+                <div *ngIf="!reactForm.controls['email'].valid"
+                        class="alert alert-danger">
+                    L'émail est requis
+                </div>
+            </div>          
+            <div class="col s4 form-group">
+                <label for="company" class="active">Compagnie</label>
+                <select class="browser-default form-control validate"                 
+                        type="text"                        
+                        required
+                        formControlName="company">
+                    <option value="" disabled selected>Choisir une compagnie</option>
+                    <option *ngFor="let company of companies" 
+                            [value]="company">{{company}}</option>
+                </select>                
+            </div>
+            <button class="waves-effect waves-light btn" 
+                    id="btn" 
+                    type="submit"
+                    [disabled]="reactForm.invalid">
+                Ajouter contact
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <div class="col s12 m4" *ngFor="let contact of contacts" [@contacts2Animation]="state">
+        <div class="card blue-grey darken-1">
+            <div class="card-image">
+                <img src="http://images.pexels.com/photos/91227/pexels-photo-91227.jpeg">
+                <span class="card-title">{{ contact.first_name }} {{ contact.last_name }}</span>
+            </div>
+            <div class="card-content white-text">
+                <span class="card-title">Details</span>
+                <p>Email: {{contact.email}}</p>
+                <p>Genre: {{contact.gender}}</p>
+            </div>
+            <div class="card-action">
+                <a href="#">{{ contact.company }}</a>
+            </div>
+        </div>
+    </div>
+</div>
